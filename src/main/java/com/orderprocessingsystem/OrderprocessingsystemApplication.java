@@ -1,4 +1,4 @@
-package com.orderprocessingsystem.orderprocessingsystem;
+package com.orderprocessingsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
