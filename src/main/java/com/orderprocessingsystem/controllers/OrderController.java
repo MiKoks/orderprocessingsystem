@@ -1,7 +1,7 @@
 package com.orderprocessingsystem.controllers;
 
 import com.orderprocessingsystem.kafka.OrderEventProducer;
-import com.orderprocessingsystem.model.Order;
+import com.orderprocessingsystem.model.OrderEntity;
 import com.orderprocessingsystem.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +19,14 @@ public class OrderController {
     private OrderEventProducer orderEventProducer;
 
     @GetMapping
-    public List<Order> getAllOrders() {
+    public List<OrderEntity> getAllOrders() {
         return orderRepository.findAll();
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
+    public OrderEntity createOrder(@RequestBody OrderEntity order) {
         order.setStatus("CREATED");
-        Order savedOrder = orderRepository.save(order);
+        OrderEntity savedOrder = orderRepository.save(order);
 
         // Send order creation event to Kafka
         orderEventProducer.sendOrderEvent("Order created with ID: " + savedOrder.getId());

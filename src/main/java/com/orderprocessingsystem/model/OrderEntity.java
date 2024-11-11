@@ -4,9 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class Order {
+@Table(name = "orders") // Specify a custom table name to avoid SQL keyword conflict
+public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,11 +18,11 @@ public class Order {
     private String status;
 
     // No-argument constructor (required by JPA)
-    public Order() {
+    public OrderEntity() {
     }
 
     // Parameterized constructor
-    public Order(String product, int quantity, String status) {
+    public OrderEntity(String product, int quantity, String status) {
         this.product = product;
         this.quantity = quantity;
         this.status = status;

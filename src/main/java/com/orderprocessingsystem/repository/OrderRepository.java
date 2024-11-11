@@ -1,7 +1,8 @@
 package com.orderprocessingsystem.repository;
 
-import com.orderprocessingsystem.model.Order;
+import com.orderprocessingsystem.model.OrderEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 }
