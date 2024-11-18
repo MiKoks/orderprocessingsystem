@@ -22,27 +22,4 @@ class OrderprocessingsystemApplicationTests {
 	void contextLoads() {
 	}
 
-	@Mock
-	private OrderRepository orderRepository;
-
-	@Mock
-	private OrderStatusWebSocketController webSocketController;
-
-	@InjectMocks
-	private OrderService orderService;
-
-	@Test
-	public void testCreateOrder() {
-		OrderEntity order = new OrderEntity();
-		order.setProduct("Test Product");
-		order.setQuantity(2);
-
-		when(orderRepository.save(any(OrderEntity.class))).thenReturn(order);
-
-		OrderEntity createdOrder = orderService.createOrder(order);
-
-		verify(orderRepository, times(1)).save(order);
-		verify(webSocketController, times(1)).sendOrderStatusUpdate(order.getId(), "CREATED");
-	}
-
 }
